@@ -10,7 +10,10 @@ class App extends React.Component {
     temperature: undefined,
     city: undefined,
     country: undefined,
+    pressure: undefined,
     humidity: undefined,
+    windSpeed: undefined,
+    windDirection: undefined,
     description: undefined,
     error: undefined
   }
@@ -27,7 +30,10 @@ class App extends React.Component {
         temperature: data.main.temp,
         city: data.name,
         country: data.sys.country,
+        pressure: data.main.pressure,
         humidity: data.main.humidity,
+        windSpeed: data.wind.speed,
+        windDirection: data.wind.deg,
         description: data.weather[0].description,
         error: ""
       });
@@ -36,7 +42,10 @@ class App extends React.Component {
         temperature: undefined,
         city: undefined,
         country: undefined,
+        pressure: undefined,
         humidity: undefined,
+        windSpeed: undefined,
+        windDirection: undefined,
         description: undefined,
         error: "Please enter the values."
       });
@@ -47,19 +56,35 @@ class App extends React.Component {
   render (){
     return (
       <div>
-        <Titles/>
-        <Form getWeather={this.getWeather} />
-        <Weather 
-        temperature={this.state.temperature} 
-        city={this.state.city} 
-        country={this.state.country} 
-        humidity={this.state.humidity}
-        description={this.state.description}
-        error={this.state.error}
-         />
+        <div className="wrapper">
+          <div className="main">
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-5 title-container">
+                  <Titles/>
+                  </div>
+                <div className="col-xs-7 form-container">
+                  <Form getWeather={this.getWeather} />
+                  <Weather 
+                    temperature={this.state.temperature} 
+                    city={this.state.city} 
+                    country={this.state.country} 
+                    pressure={this.state.pressure}
+                    humidity={this.state.humidity}
+                    windSpeed={this.state.windSpeed}
+                    windDirection={this.state.windDirection}
+                    description={this.state.description}
+                    error={this.state.error}
+                    />
+                  </div>
+                </div>  
+              </div>
+            </div>
+          </div>
         </div>
     );
   }
 };
+
 
 export default App;
